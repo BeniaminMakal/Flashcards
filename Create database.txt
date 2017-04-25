@@ -1,0 +1,14 @@
+-- Create database
+
+CREATE DATBASE "E:\SQL\Test\FLASH_CARDS.FDB" page_size 8192
+user 'sysdba' password 'masterkey'
+
+
+CREATE TABLE Test_EN_PL(
+ID_word int UNIQUE NOT NULL,
+PL_word VARCHAR (255) NOT NULL,
+FOREIGN_word VARCHAR (255) NOT NULL,
+Last_Actualization DATE NOT NULL,
+STATUS VARCHAR (50) NOT NULL DEFAULT 'NIE',
+Notes VARCHAR (255));
+
