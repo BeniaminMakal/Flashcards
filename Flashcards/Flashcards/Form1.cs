@@ -16,5 +16,14 @@ namespace Flashcards
         {
             InitializeComponent();
         }
+
+        private void Connection_test_Click(object sender, EventArgs e)
+        {
+            DataTable dt = null;
+            if (dt != null)
+                dt.Clear();
+
+
+        }
     }
 }
