@@ -1,14 +1,29 @@
--- Create database
+-- Create tables
 
-CREATE DATBASE "E:\SQL\Test\FLASH_CARDS.FDB" page_size 8192
-user 'sysdba' password 'masterkey'
-
-
-CREATE TABLE Test_EN_PL(
-ID_word int UNIQUE NOT NULL,
+CREATE TABLE Collection1_EN_PL(
+ID_word int NOT NULL PRIMARY KEY,
 PL_word VARCHAR (255) NOT NULL,
 FOREIGN_word VARCHAR (255) NOT NULL,
-Last_Actualization DATE NOT NULL,
+Last_Actualization TIMESTAMP NOT NULL,
 STATUS VARCHAR (50) NOT NULL DEFAULT 'NIE',
 Notes VARCHAR (255));
 
+CREATE TABLE Tests_Name_of_User(
+ID_test int NOT NULL PRIMARY KEY,
+Date_of_test TIMESTAMP NOT NULL,
+Collection_name varchar(50) NOT NULL,
+Number_of_answers int NOT NULL,
+Number_of_correct_answers int NOT NULL, 
+Number_of_bad_answers int NOT NULL,
+Resutlt_of_the_test numeric(9,2));
+
+-- Create generators
+
+CREATE GENERATOR gen_ID_word;
+SET GENERATOR gen_ID_word TO 0;
+
+CREATE GENERATOR gen_ID_test;
+SET GENERATOR gen_ID_test TO 0;
+
+
+-- Create triggers 
