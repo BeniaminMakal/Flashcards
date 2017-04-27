@@ -2,10 +2,10 @@
 
 CREATE TABLE Collection1_EN_PL(
 ID_word int NOT NULL PRIMARY KEY,
-PL_word VARCHAR (255) NOT NULL,
 FOREIGN_word VARCHAR (255) NOT NULL,
+PL_word VARCHAR (255) NOT NULL,
 Last_Actualization TIMESTAMP NOT NULL,
-STATUS VARCHAR (50) NOT NULL DEFAULT 'NIE',
+STATUS VARCHAR (50) DEFAULT 'NIE',
 Notes VARCHAR (255));
 
 CREATE TABLE Tests_Name_of_User(
@@ -27,3 +27,32 @@ SET GENERATOR gen_ID_test TO 0;
 
 
 -- Create triggers 
+-- trigger na: id_word, ID_test, 
+
+SET TERM !!;
+
+CREATE TRIGGER tr_ID_word FOR Collection1_EN_PL
+ACTIVE BEFORE INSERT POSITION 0
+AS
+BEGIN
+IF (NEW.ID_word IS NULL) THEN NEW.ID_word = GEN_ID(gen_ID_word, 1);
+END!!
+
+CREATE TRIGGER tr_ID_test FOR Tests_Name_of_User
+ACTIVE BEFORE INSERT POSITION 0
+AS
+BEGIN
+IF (NEW.ID_test IS NULL) THEN NEW.ID_test = GEN_ID(gen_ID_test, 1) ;
+END !!
+
+SET TERM ;!!
+
+-- Example data
+
+INSERT INTO Collection1_EN_PL (FOREIGN_word, PL_word, Last_Actualization) 
+VALUES ('factiorial', 'silnia', '2017-10-12 20:11:11');
+
+INSERT INTO Collection1_EN_PL (FOREIGN_word, PL_word, Last_Actualization) 
+VALUES ('distinguished by', 'odróżniany przez ', '2017-10-12 20:11:11');
+
+COMMIT:
