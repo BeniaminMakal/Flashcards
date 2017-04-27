@@ -55,4 +55,4 @@ VALUES ('factiorial', 'silnia', '2017-10-12 20:11:11');
 INSERT INTO Collection1_EN_PL (FOREIGN_word, PL_word, Last_Actualization) 
 VALUES ('distinguished by', 'odróżniany przez ', '2017-10-12 20:11:11');
 
-COMMIT:
+COMMIT;
