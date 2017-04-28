@@ -33,18 +33,22 @@
             this.Show_all_words = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.learnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Learn_from_dictionary = new System.Windows.Forms.ToolStripMenuItem();
-            this.Learn_from_flash_cards = new System.Windows.Forms.ToolStripMenuItem();
-            this.Test_dictionary = new System.Windows.Forms.ToolStripMenuItem();
-            this.Test_flash_cards = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Add_flash_card1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Add_collection = new System.Windows.Forms.ToolStripMenuItem();
             this.Add_from_file = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.learnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Learn_from_dictionary = new System.Windows.Forms.ToolStripMenuItem();
+            this.Learn_from_flash_cards = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Test_dictionary = new System.Windows.Forms.ToolStripMenuItem();
+            this.Test_flash_cards = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Foreign_word = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Translation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Clear_Listview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +89,7 @@
             this.testToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(289, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(549, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -99,6 +103,43 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Add_flash_card1,
+            this.Add_collection,
+            this.Add_from_file});
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            // 
+            // Add_flash_card1
+            // 
+            this.Add_flash_card1.Name = "Add_flash_card1";
+            this.Add_flash_card1.Size = new System.Drawing.Size(163, 22);
+            this.Add_flash_card1.Text = "Add flash card";
+            this.Add_flash_card1.Click += new System.EventHandler(this.Add_flash_card_Click);
+            // 
+            // Add_collection
+            // 
+            this.Add_collection.Name = "Add_collection";
+            this.Add_collection.Size = new System.Drawing.Size(163, 22);
+            this.Add_collection.Text = "Add collection";
+            // 
+            // Add_from_file
+            // 
+            this.Add_from_file.Name = "Add_from_file";
+            this.Add_from_file.Size = new System.Drawing.Size(163, 22);
+            this.Add_from_file.Text = "Add from .txt file";
+            this.Add_from_file.Click += new System.EventHandler(this.Add_from_file_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // learnToolStripMenuItem
             // 
             this.learnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -107,15 +148,6 @@
             this.learnToolStripMenuItem.Name = "learnToolStripMenuItem";
             this.learnToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.learnToolStripMenuItem.Text = "Learn";
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Test_dictionary,
-            this.Test_flash_cards});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.testToolStripMenuItem.Text = "Test";
             // 
             // Learn_from_dictionary
             // 
@@ -129,64 +161,72 @@
             this.Learn_from_flash_cards.Size = new System.Drawing.Size(161, 22);
             this.Learn_from_flash_cards.Text = "From flash cards";
             // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Test_dictionary,
+            this.Test_flash_cards});
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
             // Test_dictionary
             // 
             this.Test_dictionary.Name = "Test_dictionary";
-            this.Test_dictionary.Size = new System.Drawing.Size(152, 22);
+            this.Test_dictionary.Size = new System.Drawing.Size(132, 22);
             this.Test_dictionary.Text = "Dictionary";
             // 
             // Test_flash_cards
             // 
             this.Test_flash_cards.Name = "Test_flash_cards";
-            this.Test_flash_cards.Size = new System.Drawing.Size(152, 22);
+            this.Test_flash_cards.Size = new System.Drawing.Size(132, 22);
             this.Test_flash_cards.Text = "Flash cards";
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Add_flash_card1,
-            this.Add_collection,
-            this.Add_from_file});
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            // 
-            // Add_flash_card1
-            // 
-            this.Add_flash_card1.Name = "Add_flash_card1";
-            this.Add_flash_card1.Size = new System.Drawing.Size(152, 22);
-            this.Add_flash_card1.Text = "Add flash card";
-            this.Add_flash_card1.Click += new System.EventHandler(this.Add_flash_card_Click);
-            // 
-            // Add_collection
-            // 
-            this.Add_collection.Name = "Add_collection";
-            this.Add_collection.Size = new System.Drawing.Size(152, 22);
-            this.Add_collection.Text = "Add collection";
-            // 
-            // Add_from_file
-            // 
-            this.Add_from_file.Name = "Add_from_file";
-            this.Add_from_file.Size = new System.Drawing.Size(152, 22);
-            this.Add_from_file.Text = "Add from file";
-            this.Add_from_file.Click += new System.EventHandler(this.Add_from_file_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // listView1
+            // 
+            this.listView1.AllowColumnReorder = true;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Foreign_word,
+            this.Translation});
+            this.listView1.LabelEdit = true;
+            this.listView1.Location = new System.Drawing.Point(277, 35);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(256, 212);
+            this.listView1.TabIndex = 4;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // Foreign_word
+            // 
+            this.Foreign_word.Text = "Foreign word";
+            this.Foreign_word.Width = 128;
+            // 
+            // Translation
+            // 
+            this.Translation.Text = "Translation";
+            this.Translation.Width = 129;
+            // 
+            // Clear_Listview
+            // 
+            this.Clear_Listview.Location = new System.Drawing.Point(166, 224);
+            this.Clear_Listview.Name = "Clear_Listview";
+            this.Clear_Listview.Size = new System.Drawing.Size(105, 23);
+            this.Clear_Listview.TabIndex = 5;
+            this.Clear_Listview.Text = "Clear ListView";
+            this.Clear_Listview.UseVisualStyleBackColor = true;
+            this.Clear_Listview.Click += new System.EventHandler(this.Clear_Listview_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 259);
+            this.ClientSize = new System.Drawing.Size(549, 259);
+            this.Controls.Add(this.Clear_Listview);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.Show_all_words);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Connection_test);
@@ -221,6 +261,10 @@
         private System.Windows.Forms.ToolStripMenuItem Add_from_file;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader Foreign_word;
+        private System.Windows.Forms.ColumnHeader Translation;
+        private System.Windows.Forms.Button Clear_Listview;
     }
 }
 

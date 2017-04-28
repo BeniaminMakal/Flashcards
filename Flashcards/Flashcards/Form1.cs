@@ -16,30 +16,11 @@ namespace Flashcards
     {
         FbConnection conn1;
         string line;
+        string[] buffor;
+
         public Form1()
         {
             InitializeComponent();
-            string database = @"C:\Users\benia\OneDrive\Dokumenty\Repositories\Flashcards\Flashcards\FLASH_CARDS.FDB";
-            string connectionstring;
-            FbConnectionStringBuilder ConString = new FbConnectionStringBuilder();
-            ConString.Database = database;
-            ConString.ServerType = FbServerType.Embedded;
-            ConString.UserID = "sysdba";
-            connectionstring = ConString.ToString();
-            
-            conn1 = new FbConnection(connectionstring);
-            try
-            {
-                //open connection
-
-                conn1.Open();
-                MessageBox.Show("Connect success!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-           
         }
 
         private void Connection_test_Click(object sender, EventArgs e)
@@ -117,26 +98,43 @@ namespace Flashcards
              
             openFileDialog1.RestoreDirectory = true;
             openFileDialog1.InitialDirectory = @"E:\SQL\Test\slowka";
-            int a = 0;
-            string[] items = new string[1000000];
+            string[] items;
+            string[] arr = new string[100];
+            ListViewItem ListViewItem;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Success.żżńńł");
+                MessageBox.Show("Success!");
                 try
                 {
                     using (StreamReader myStreamreader = new StreamReader(openFileDialog1.FileName, Encoding.UTF8))
                     {
                         while ((line = myStreamreader.ReadLine()) != null)
                         {
-                            
+                            ListViewItem = new ListViewItem(arr);
                             items = line.Split('\n');
-                            string foreign_transate = items[a];
-                            a++;
-                            foreach (string i in items)
-                                MessageBox.Show(i);
+                            string foreign_transate = items[0];
+                            string[] singleword = foreign_transate.Split('-');
+
+                            for (int w = 0; w < singleword.Length;)
+                            {
+                                
+                                arr[w] = singleword[w];
+                                w += 2;
+
+                                
+                            }
+                            for (int w = 1; w < singleword.Length;)
+                            {
+                                
+                                arr[w] = singleword[w];
+                                w += 2;
+                                
+                            }
+                            listView1.Items.Add(ListViewItem);
+                            
                         }
                         line = myStreamreader.ReadToEnd();
-                        MessageBox.Show(line);
+
                         
                     }
                 }
@@ -151,5 +149,11 @@ namespace Flashcards
             }
 
         }
+
+        private void Clear_Listview_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
     }
 }
