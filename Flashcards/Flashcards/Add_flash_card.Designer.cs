@@ -30,22 +30,23 @@
         {
             this.Add = new System.Windows.Forms.Button();
             this.Foreign_word = new System.Windows.Forms.RichTextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Translated_word = new System.Windows.Forms.RichTextBox();
             this.F_word = new System.Windows.Forms.Label();
             this.T_word = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(250, 239);
+            this.Add.Location = new System.Drawing.Point(248, 299);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(75, 23);
             this.Add.TabIndex = 0;
             this.Add.Text = "Add";
             this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // Foreign_word
             // 
@@ -54,10 +55,7 @@
             this.Foreign_word.Size = new System.Drawing.Size(303, 81);
             this.Foreign_word.TabIndex = 3;
             this.Foreign_word.Text = "";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.Foreign_word.TextChanged += new System.EventHandler(this.Foreign_word_TextChanged);
             // 
             // Translated_word
             // 
@@ -66,6 +64,7 @@
             this.Translated_word.Size = new System.Drawing.Size(303, 81);
             this.Translated_word.TabIndex = 4;
             this.Translated_word.Text = "";
+            this.Translated_word.TextChanged += new System.EventHandler(this.Translated_word_TextChanged);
             // 
             // F_word
             // 
@@ -87,7 +86,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(138, 239);
+            this.button2.Location = new System.Drawing.Point(136, 299);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -96,7 +95,7 @@
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(25, 238);
+            this.Cancel.Location = new System.Drawing.Point(23, 298);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
             this.Cancel.TabIndex = 8;
@@ -104,11 +103,24 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Collection1_EN_PL",
+            "Collection2_EN_PL"});
+            this.comboBox1.Location = new System.Drawing.Point(202, 249);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 9;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Add_flash_card
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 269);
+            this.ClientSize = new System.Drawing.Size(344, 334);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.T_word);
@@ -127,11 +139,11 @@
 
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.RichTextBox Foreign_word;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.RichTextBox Translated_word;
         private System.Windows.Forms.Label F_word;
         private System.Windows.Forms.Label T_word;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
