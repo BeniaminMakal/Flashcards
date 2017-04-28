@@ -54,5 +54,33 @@ namespace Flashcards
 
         }
         
+        public int insert_data(string table, string foreign_word, string translation, string data)
+        {
+            int result = 0, result2 = 0;
+
+            try
+            {
+                FbCommand Comm = new FbCommand("INSERT INTO " + table + " (FOREIGN_word, PL_word, Last_Actualization) VALUES ('" +foreign_word +"', '" + translation +"', '" + data + "');");
+
+                Comm.Connection = this.conn1;
+                result = Comm.ExecuteNonQuery();
+                return result;
+                if(result > 0)
+                {
+                    FbCommand Comm2 = new FbCommand("commit;");
+                    Comm2.Connection = this.conn1;
+                    result2 = Comm2.ExecuteNonQuery();
+                    
+                }
+            }
+            finally
+            {
+                if(conn1 != null)
+                conn1.Close();
+            }
+
+            
+        }
     }
+   
 }
