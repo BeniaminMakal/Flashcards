@@ -15,6 +15,8 @@ namespace Flashcards
         string Foreg_word;
         string Transaltion;
         string Collection;
+        string Foreign_language;
+        string Translation_languagel;
         int result = 0;
         public Add_flash_card()
         {
@@ -30,17 +32,7 @@ namespace Flashcards
         {
             try
             {
-                DateTime Ac_data = DateTime.Now;
-                Connect_to_database conn = new Connect_to_database();
-                result = conn.insert_data(Collection, Foreg_word, Transaltion, Convert.ToString(Ac_data));
-                if(result > 0)
-                {
-                    MessageBox.Show("Udało sie.");
-                }
-                else
-                {
-                    MessageBox.Show("Coś nie poszło.");
-                }
+               
             }
             catch(Exception ex)
             {
@@ -60,7 +52,43 @@ namespace Flashcards
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Collection = comboBox1.Text;
+            Collection = Translation_language.Text;
+        }
+
+        private void Add_new_collection_Click(object sender, EventArgs e)
+        {
+            var newCollection = new AddCollection();
+            newCollection.Visible = true;
+            newCollection.TopMost = true;
+            newCollection.Show();
+        }
+
+        private void Foreing_language_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] arr = new string[10];
+            var database = new Connect_to_database();
+            var languages = database.FindLanguages();
+            
+
+        }
+
+        private void Collection_name_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var database = new Connect_to_database();
+                var languages = database.FindLanguages();
+                var a = languages.GetEnumerator();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

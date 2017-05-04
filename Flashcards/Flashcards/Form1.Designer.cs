@@ -49,13 +49,14 @@
             this.Foreign_word = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Translation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Clear_Listview = new System.Windows.Forms.Button();
+            this.Show_collections = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Connection_test
             // 
-            this.Connection_test.Location = new System.Drawing.Point(13, 191);
+            this.Connection_test.Location = new System.Drawing.Point(56, 267);
             this.Connection_test.Name = "Connection_test";
             this.Connection_test.Size = new System.Drawing.Size(110, 23);
             this.Connection_test.TabIndex = 0;
@@ -66,14 +67,14 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 35);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 27);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(259, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(390, 210);
             this.dataGridView1.TabIndex = 1;
             // 
             // Show_all_words
             // 
-            this.Show_all_words.Location = new System.Drawing.Point(146, 191);
+            this.Show_all_words.Location = new System.Drawing.Point(189, 267);
             this.Show_all_words.Name = "Show_all_words";
             this.Show_all_words.Size = new System.Drawing.Size(111, 23);
             this.Show_all_words.TabIndex = 2;
@@ -89,7 +90,7 @@
             this.testToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(549, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(676, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -125,6 +126,7 @@
             this.Add_collection.Name = "Add_collection";
             this.Add_collection.Size = new System.Drawing.Size(163, 22);
             this.Add_collection.Text = "Add collection";
+            this.Add_collection.Click += new System.EventHandler(this.Add_collection_Click);
             // 
             // Add_from_file
             // 
@@ -193,12 +195,13 @@
             this.Foreign_word,
             this.Translation});
             this.listView1.LabelEdit = true;
-            this.listView1.Location = new System.Drawing.Point(277, 35);
+            this.listView1.Location = new System.Drawing.Point(408, 27);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(256, 212);
+            this.listView1.Size = new System.Drawing.Size(256, 296);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // Foreign_word
             // 
@@ -212,7 +215,7 @@
             // 
             // Clear_Listview
             // 
-            this.Clear_Listview.Location = new System.Drawing.Point(166, 224);
+            this.Clear_Listview.Location = new System.Drawing.Point(209, 300);
             this.Clear_Listview.Name = "Clear_Listview";
             this.Clear_Listview.Size = new System.Drawing.Size(105, 23);
             this.Clear_Listview.TabIndex = 5;
@@ -220,11 +223,22 @@
             this.Clear_Listview.UseVisualStyleBackColor = true;
             this.Clear_Listview.Click += new System.EventHandler(this.Clear_Listview_Click);
             // 
+            // Show_collections
+            // 
+            this.Show_collections.Location = new System.Drawing.Point(56, 297);
+            this.Show_collections.Name = "Show_collections";
+            this.Show_collections.Size = new System.Drawing.Size(125, 23);
+            this.Show_collections.TabIndex = 6;
+            this.Show_collections.Text = "Show all collections";
+            this.Show_collections.UseVisualStyleBackColor = true;
+            this.Show_collections.Click += new System.EventHandler(this.Show_collections_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 259);
+            this.ClientSize = new System.Drawing.Size(676, 352);
+            this.Controls.Add(this.Show_collections);
             this.Controls.Add(this.Clear_Listview);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.Show_all_words);
@@ -265,6 +279,7 @@
         private System.Windows.Forms.ColumnHeader Foreign_word;
         private System.Windows.Forms.ColumnHeader Translation;
         private System.Windows.Forms.Button Clear_Listview;
+        private System.Windows.Forms.Button Show_collections;
     }
 }
 

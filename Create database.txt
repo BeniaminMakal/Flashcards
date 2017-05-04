@@ -1,21 +1,72 @@
 -- Create tables
-
+/*
 CREATE TABLE Collection1_EN_PL(
-ID_word int NOT NULL PRIMARY KEY,
+Collection_name VARCHAR(255) NOT NULL PRIMARY KEY,
 FOREIGN_word VARCHAR (255) NOT NULL,
-PL_word VARCHAR (255) NOT NULL,
+TRANSLATED_word VARCHAR (255) NOT NULL, 
+Image BLOB,
 Last_Actualization TIMESTAMP NOT NULL,
-STATUS VARCHAR (50) DEFAULT 'NIE',
+STATUS int DEFAULT,
 Notes VARCHAR (255));
+*/
 
-CREATE TABLE Tests_Name_of_User(
-ID_test int NOT NULL PRIMARY KEY,
+
+/* Statusy:
+1 - słówko nieznane
+2 - słowko będzie powtarzane tego samego dnia
+3 - słowko nie będzie już tego dnia powtarzane
+4 - j.w.
+5 - j.w.
+6 - słówko nie jest powtarzane przez 3 dnia
+7 - słowko nie jest powtarzane przez tydzień
+8 - słowko nie jest powtarzane przez miesiąc
+9 - słówko nie jest powtarzane przez 2 miesiące
+10 - słówko jest już dobrze znane i jest specjalne oznaczone przy podglądzie calej kolekcji
+*/
+
+CREATE TABLE Tests(
+Test_ID int NOT NULL PRIMARY KEY,
+User_ID int NOT NULL, 
 Date_of_test TIMESTAMP NOT NULL,
 Collection_name varchar(50) NOT NULL,
 Number_of_answers int NOT NULL,
 Number_of_correct_answers int NOT NULL, 
 Number_of_bad_answers int NOT NULL,
 Resutlt_of_the_test numeric(9,2));
+
+CREATE TABLE Languages(
+Language VARCHAR (100) NOT NULL PRIMARY KEY);
+
+CREATE TABLE Polish_words(
+Word_ID int PRIMARY KEY NOT NULL,
+Word VARCHAR (255)
+Creation_date TIMESTAMP NOT NULL);
+
+CREATE TABLE English_words
+Word_ID int PRIMARY KEY NOT NULL,
+Word VARCHAR (255)
+Creation_date TIMESTAMP NOT NULL);
+
+CREATE TABLE Collections(
+Collection_ID int NOT NULL PRIMARY KEY,
+Collection_name VARCHAR (255),
+FOREIGN_word VARCHAR (255) NOT NULL,
+TRANSLATED_word VARCHAR (255) NOT NULL, 
+Image BLOB,
+Last_Actualization TIMESTAMP NOT NULL,
+STATUS int DEFAULT 1,
+Notes VARCHAR (255)),
+Owner VARCHAR (255) NOT NULL);
+
+-- Foreign keys
+ALTER TABLE Collections ADD CONSTRAINT FK_Foreign_word FOREIGN KEY (FOREIGN_word)
+REFERENCES Englis
+
+
+ALTER TABLE Expiration_dates  ADD CONSTRAINT FK_Product_name FOREIGN KEY (Product_name)
+REFERENCES Products(Product_name)
+ON DELETE CASCADE;
+
 
 -- Create generators
 
@@ -24,6 +75,9 @@ SET GENERATOR gen_ID_word TO 0;
 
 CREATE GENERATOR gen_ID_test;
 SET GENERATOR gen_ID_test TO 0;
+
+CREATE GENERATOR gen_ID_collection;
+SET GENERATOR gen_ID_collection TO 0;
 
 
 -- Create triggers 
@@ -38,11 +92,18 @@ BEGIN
 IF (NEW.ID_word IS NULL) THEN NEW.ID_word = GEN_ID(gen_ID_word, 1);
 END!!
 
-CREATE TRIGGER tr_ID_test FOR Tests_Name_of_User
+CREATE TRIGGER tr_ID_test FOR Tests_Name_of_Uset ser
 ACTIVE BEFORE INSERT POSITION 0
 AS
 BEGIN
 IF (NEW.ID_test IS NULL) THEN NEW.ID_test = GEN_ID(gen_ID_test, 1) ;
+END !!
+
+CREATE TRIGGER tr_ID_collection FOR Collections
+ACTIVE BEFORE INSERT POSITION 0
+AS
+BEGIN
+IF (NEW.ID_collection IS NULL) THEN NEW.ID_collection = GEN_ID(gen_ID_collection, 1);
 END !!
 
 SET TERM ;!!
@@ -53,6 +114,12 @@ INSERT INTO Collection1_EN_PL (FOREIGN_word, PL_word, Last_Actualization)
 VALUES ('factiorial', 'silnia', '2017-10-12 20:11:11');
 
 INSERT INTO Collection1_EN_PL (FOREIGN_word, PL_word, Last_Actualization) 
-VALUES ('distinguished by', 'odróżniany przez ', '2017-10-12 20:11:11');
+VALUES ('distinguished by', 'odróżniany przez', '2017-10-12 20:11:11');
+
+INSERT INTO Languages VALUES ('Polish');
+INSERT INTO Languages VALUES ('German');
+INSERT INTO Languages VALUES ('Spanish');
+INSERT INTO Languages VALUES ('Italy');
+INSERT INTO Languages VALUES ('French');
 
 COMMIT;

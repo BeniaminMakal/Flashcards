@@ -35,12 +35,19 @@
             this.T_word = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Translation_language = new System.Windows.Forms.ComboBox();
+            this.Foreing_language = new System.Windows.Forms.ComboBox();
+            this.Foreign_lan = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Collection_name = new System.Windows.Forms.ComboBox();
+            this.Add_new_collection = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(248, 299);
+            this.Add.Location = new System.Drawing.Point(253, 361);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(75, 23);
             this.Add.TabIndex = 0;
@@ -86,7 +93,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(136, 299);
+            this.button2.Location = new System.Drawing.Point(141, 361);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -95,7 +102,7 @@
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(23, 298);
+            this.Cancel.Location = new System.Drawing.Point(28, 360);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
             this.Cancel.TabIndex = 8;
@@ -103,24 +110,96 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // comboBox1
+            // Translation_language
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.Translation_language.FormattingEnabled = true;
+            this.Translation_language.Items.AddRange(new object[] {
             "Collection1_EN_PL",
             "Collection2_EN_PL"});
-            this.comboBox1.Location = new System.Drawing.Point(202, 249);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 9;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.Translation_language.Location = new System.Drawing.Point(21, 324);
+            this.Translation_language.Name = "Translation_language";
+            this.Translation_language.Size = new System.Drawing.Size(121, 21);
+            this.Translation_language.TabIndex = 9;
+            this.Translation_language.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // Foreing_language
+            // 
+            this.Foreing_language.FormattingEnabled = true;
+            this.Foreing_language.Location = new System.Drawing.Point(21, 272);
+            this.Foreing_language.Name = "Foreing_language";
+            this.Foreing_language.Size = new System.Drawing.Size(121, 21);
+            this.Foreing_language.TabIndex = 10;
+            this.Foreing_language.SelectedIndexChanged += new System.EventHandler(this.Foreing_language_SelectedIndexChanged);
+            // 
+            // Foreign_lan
+            // 
+            this.Foreign_lan.AutoSize = true;
+            this.Foreign_lan.Location = new System.Drawing.Point(18, 253);
+            this.Foreign_lan.Name = "Foreign_lan";
+            this.Foreign_lan.Size = new System.Drawing.Size(89, 13);
+            this.Foreign_lan.TabIndex = 11;
+            this.Foreign_lan.Text = "Foreign language";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 305);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Translation language";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(192, 253);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Collection";
+            // 
+            // Collection_name
+            // 
+            this.Collection_name.FormattingEnabled = true;
+            this.Collection_name.Location = new System.Drawing.Point(195, 272);
+            this.Collection_name.Name = "Collection_name";
+            this.Collection_name.Size = new System.Drawing.Size(121, 21);
+            this.Collection_name.TabIndex = 14;
+            this.Collection_name.SelectedIndexChanged += new System.EventHandler(this.Collection_name_SelectedIndexChanged);
+            // 
+            // Add_new_collection
+            // 
+            this.Add_new_collection.Location = new System.Drawing.Point(195, 322);
+            this.Add_new_collection.Name = "Add_new_collection";
+            this.Add_new_collection.Size = new System.Drawing.Size(121, 23);
+            this.Add_new_collection.TabIndex = 15;
+            this.Add_new_collection.Text = "Add new collection";
+            this.Add_new_collection.UseVisualStyleBackColor = true;
+            this.Add_new_collection.Click += new System.EventHandler(this.Add_new_collection_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(141, 295);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Add_flash_card
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 334);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(344, 396);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Add_new_collection);
+            this.Controls.Add(this.Collection_name);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Foreign_lan);
+            this.Controls.Add(this.Foreing_language);
+            this.Controls.Add(this.Translation_language);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.T_word);
@@ -144,6 +223,13 @@
         private System.Windows.Forms.Label T_word;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Cancel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox Translation_language;
+        private System.Windows.Forms.ComboBox Foreing_language;
+        private System.Windows.Forms.Label Foreign_lan;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox Collection_name;
+        private System.Windows.Forms.Button Add_new_collection;
+        private System.Windows.Forms.Button button1;
     }
 }

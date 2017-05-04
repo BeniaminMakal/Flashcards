@@ -54,33 +54,100 @@ namespace Flashcards
 
         }
         
-        public int insert_data(string table, string foreign_word, string translation, string data)
+        public int insert_data(string collection, string foreign_language, string foreign_word, string translation_language, string translation, string data)
         {
-            int result = 0, result2 = 0;
+            int result = 0;
+            using (var transaction = this.conn1.BeginTransaction())
+            using (var Comm = new FbCommand())
 
-            try
-            {
-                FbCommand Comm = new FbCommand("INSERT INTO " + table + " (FOREIGN_word, PL_word, Last_Actualization) VALUES ('" +foreign_word +"', '" + translation +"', '" + data + "');");
+                try
+               {
+                    Comm.Transaction = transaction;
 
-                Comm.Connection = this.conn1;
+                    Comm.CommandText = @"INSERT INTO " + foreign_language + " "+
+                    "(WORD) VALUES ('"+ foreign_word + "');";
+                    Comm.ExecuteNonQuery();
+
+                    Comm.CommandText = @"INSERT INTO " + translation_language +
+                        "(WORD) VALUES ('" + translation +"');";
+                    Comm.ExecuteNonQuery();
+
+                    Comm.CommandText = @"INSERT INTO " + collection + "" +
+                        " (FOREIGN_word, PL_word, Last_Actualization)" +
+                        " VALUES ('" +foreign_word +"', '" + translation +
+                        "', '" + data + "');";
+
+               
                 result = Comm.ExecuteNonQuery();
+                    transaction.Commit();
                 return result;
-                if(result > 0)
-                {
-                    FbCommand Comm2 = new FbCommand("commit;");
-                    Comm2.Connection = this.conn1;
-                    result2 = Comm2.ExecuteNonQuery();
-                    
-                }
-            }
+                
+              }
             finally
             {
                 if(conn1 != null)
                 conn1.Close();
             }
-
-            
         }
+        public void CreateCollection (string newCollection)
+        {
+
+            using (var transaction = this.conn1.BeginTransaction())
+            using (var Comm = new FbCommand())
+
+                try
+                {
+                    Comm.Connection = this.conn1;
+                    Comm.Transaction = transaction;
+
+                    Comm.CommandText = @"CREATE TABLE " + newCollection + " " +
+                        "(Collection_name VARCHAR (255) NOT NULL," +
+                        " Foreign_language VARCHAR (255) NOT NULL," +
+                        " Foreign_word VARCHAR (255) NOT NULL PRIMARY KEY," +
+                        "  Translation_language VARCHAR (255) NOT NULL," +
+                        " Translation_word VARCHAR (255) NOT NULL," +
+                        " Actualization TIMESTAMP NOT NULL," +
+                        " Owner VARCHAR (255) NOT NULL," +
+                        " Status int DEFAULT 1);";
+
+                    Comm.ExecuteNonQuery();
+
+                    Comm.CommandText = @"INSERT INTO Collections " +
+                        "(Collection_name, owner) " +
+                        "VALUES ('" + newCollection + "'," +
+                        " 'sysdba');";
+                    Comm.ExecuteNonQuery();
+
+                    transaction.Commit();
+
+
+                }
+                finally
+                {
+                    if (conn1 != null)
+                        conn1.Close();
+                }
+        }
+        public IList<object[]>  FindLanguages()
+        {
+            using (var Comm = new FbCommand())
+            {
+                Comm.Connection = this.conn1;
+                Comm.CommandText = "SELECT * FROM Languages;";
+                using (var reader = Comm.ExecuteReader())
+                {
+                    var rows = new List<object[]>();
+                    while (reader.Read())
+                    {
+                        var columns = new object[reader.FieldCount];
+                        reader.GetValues(columns);
+                        rows.Add(columns);
+                    }
+                    return rows;
+                }
+            }
+        }
+
     }
    
 }

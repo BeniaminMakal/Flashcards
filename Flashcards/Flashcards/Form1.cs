@@ -155,5 +155,35 @@ namespace Flashcards
             listView1.Items.Clear();
         }
 
+        private void Add_collection_Click(object sender, EventArgs e)
+        {
+            var addCollection = new AddCollection();
+            addCollection.Visible = true;
+            addCollection.TopMost = true;
+            addCollection.Show();
+        }
+
+        private void Show_collections_Click(object sender, EventArgs e)
+        {
+            DataTable dt = null;
+            if (dt != null)
+                dt.Clear();
+            try
+            {
+                var get_data = new Connect_to_database();
+                dataGridView1.DataSource = get_data.get_data("SELECT * FROM Collections;");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
